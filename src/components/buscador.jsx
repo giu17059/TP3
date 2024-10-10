@@ -1,5 +1,6 @@
 import "./../App.css"
 import { useState } from "react"
+import Button  from "react-bootstrap/Button";
 
 export function Buscador ( {setResultados}){
    const [buscador, setBuscador] = useState ("");
@@ -20,14 +21,16 @@ export function Buscador ( {setResultados}){
    }
 
     return(
-       <div>
+       <div className="">
         <input 
             type="text" 
+            className="p-1"
             placeholder="Buscador" 
             value={buscador}
             onChange={(e)=> setBuscador(e.target.value)} 
             onKeyDown={(e)=> e.key === 'Enter'? buscar_api():{}}/>
-        <button onClick={buscar_api}>🔍</button>
+        <Button onClick={buscar_api} variant="primary">🔍</Button>
+
 
 
        </div> 
