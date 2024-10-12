@@ -1,18 +1,21 @@
 import "./../App.css"
 import { useState } from "react"
 import Button  from "react-bootstrap/Button";
+import { Navigate, useNavigate } from 'react-router-dom';
+import { Listado } from "./listado";
 
-export function Buscador ( {setResultados}){
-   const [buscador, setBuscador] = useState ("");
 
-   
+export function Buscador ( {}){
+  const [buscador, setBuscador] = useState ("");
+  const navigate = useNavigate();
+  const [listaResultados, setListaResultados] = useState ([]);
 
    function buscar_api (){
     fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${buscador}`)
       .then((response) => response.json()) 
       .then((data) => {
         console.log(data.results); 
-        setResultados(data.results); 
+        setListaResultados(data.results);
       })
       .catch((error) => {
         console.error("Error al buscar en la API de Mercado Libre:", error);
@@ -21,17 +24,22 @@ export function Buscador ( {setResultados}){
    }
 
     return(
-      <div className='row mt-2 text-center'>
-          <div className='col '>
-        <input 
-            type="text" 
-            className="p-1"
-            placeholder="Buscador" 
-            value={buscador}
-            onChange={(e)=> setBuscador(e.target.value)} 
-            onKeyDown={(e)=> e.key === 'Enter'? buscar_api():{}}/>
-        <Button onClick={buscar_api} variant="primary">🔍</Button>
+      <div className='col mt-2 text-center'>
+        <div className='row '>
+            <div className="col">
+              <div className="d-flex justify-content-center">
+                <input 
+                    type="text" 
+                    className="p-1"
+                    placeholder="Buscador" 
+                    value={buscador}
+                    onChange={(e)=> setBuscador(e.target.value)} 
+                    onKeyDown={(e)=> e.key === 'Enter'? buscar_api():{}}/>
+                <Button onClick={buscar_api} variant="primary">🔍</Button>
+              </div>
+            </div>
         </div> 
+          <Listado lista_Resultados={listaResultados}/>
       </div>
     )
 }

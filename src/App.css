@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+
+.imagen_personalizada{
+  max-width: 10rem;
+  max-height: 10rem;
+}

@@ -4,10 +4,10 @@ import { Buscador } from './components/buscador';
 import { useState } from 'react';
 import { Listado } from './components/listado';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function App() {
-  const [listaResultados, setListaResultados] = useState ([]);
   const [listaComprados, setListaComprados] = useState([]);
 
 
@@ -15,11 +15,14 @@ function App() {
     <div className='container-fluid '>
           <BrowserRouter>
               <Routes>
-                <Route path="/" element={<Buscador  
-                  setResultados={setListaResultados}/>} />
-                <Route path="/about" element={<Listado
-                  lista_Resultados={listaResultados}/>} />
-              </Routes> 
+                <Route path="/" element={<Buscador/>}/>
+              </Routes>
+              <Routes>
+                <Route path="/producto" element={<Buscador/>}/>
+              </Routes>
+              <Routes>
+                <Route path="/carrito" element={<Buscador/>}/>
+              </Routes>
           </BrowserRouter> 
   </div>
   )
