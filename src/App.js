@@ -22,7 +22,7 @@ function App() {
                 <Route path="/producto" element={<MostrarProducto producto={prodSeleccionado}/>}/>
               </Routes>
               <Routes>
-                <Route path="/carrito" element={<Buscador/>}/>
+                <Route path="/carrito" element={<>/* el carrito */</>}/>
               </Routes>
           </BrowserRouter> 
   </div>
