@@ -1,12 +1,12 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
-import { Buscador } from './buscador';
+import { useNavigate } from 'react-router-dom';
 import './../App.css';
 
 
 export function Listado ({lista_Resultados}){
-
+    const navigate = useNavigate();
 
 
 
@@ -28,7 +28,7 @@ export function Listado ({lista_Resultados}){
                             </div>
                         </div>
                         <div className='col-2 mt-4'>
-                            <Button variant='success'>comprar</Button>
+                            <Button variant='success' onClick={()=>{navigate('/producto')}}>comprar</Button>
                         </div>
                     </div>)}
             </div>

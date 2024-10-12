@@ -1,13 +1,12 @@
 import "./../App.css"
 import { useState } from "react"
 import Button  from "react-bootstrap/Button";
-import { Navigate, useNavigate } from 'react-router-dom';
 import { Listado } from "./listado";
 
 
 export function Buscador ( {}){
   const [buscador, setBuscador] = useState ("");
-  const navigate = useNavigate();
+  
   const [listaResultados, setListaResultados] = useState ([]);
 
    function buscar_api (){
