@@ -21,7 +21,8 @@ export function Buscador ( {setResultados}){
    }
 
     return(
-       <div className="">
+      <div className='row mt-2 text-center'>
+          <div className='col '>
         <input 
             type="text" 
             className="p-1"
@@ -30,9 +31,7 @@ export function Buscador ( {setResultados}){
             onChange={(e)=> setBuscador(e.target.value)} 
             onKeyDown={(e)=> e.key === 'Enter'? buscar_api():{}}/>
         <Button onClick={buscar_api} variant="primary">🔍</Button>
-
-
-
-       </div> 
+        </div> 
+      </div>
     )
 }

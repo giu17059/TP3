@@ -9,6 +9,7 @@ export function Listado ({lista_Resultados}){
 
 
     return(
+    <div className='col'>
         <div className='container'>
             <div className='col text-center'>
             {lista_Resultados.map((item)=> 
@@ -31,8 +32,6 @@ export function Listado ({lista_Resultados}){
                 </div>)}
             </div>
         </div>
-
-
-
+    </div>
     )   
 }
