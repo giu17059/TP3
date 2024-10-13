@@ -5,10 +5,12 @@ import { Listado } from "./listado";
 import { Categoria } from "./categoria";
 
 
-export function Buscador ( {}){
+export function Buscador ({setProdSeleccionado}){
   const [buscador, setBuscador] = useState ("");
   const [cargando, setCargando] = useState (false);
   const [listaResultados, setListaResultados] = useState ([]);
+
+  console.log ("set prodSeleccionado en buscador", setProdSeleccionado);
 
    function buscar_api (){
     setCargando(true);
@@ -51,7 +53,7 @@ export function Buscador ( {}){
                     <div className='spinner-border' role='status'></div>
                 </div>
             ) : (
-                <Listado lista_Resultados={listaResultados}></Listado>
+                <Listado lista_Resultados={listaResultados} setProdSeleccionado={setProdSeleccionado}></Listado>
             )}
       </div>
     )
