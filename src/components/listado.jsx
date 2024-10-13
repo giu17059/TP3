@@ -16,7 +16,7 @@ export function Listado ({lista_Resultados}){
                 {lista_Resultados.map((item)=> 
                     <div className='row text-center p-4 border'>
                         <div className='col-1'></div>
-                        <div className='col-2'>
+                        <div className='col'>
                             <img src={item.thumbnail} alt="imagen del producto" className='imagen_personalizada'/>
                         </div>
                         <div className='col'>

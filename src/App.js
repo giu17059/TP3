@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MostrarProducto } from './components/producto';
 import { Home } from './components/home';
+import { Carrito } from './components/carrito';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
                 <Route path="/producto" element={<MostrarProducto producto={prodSeleccionado}/>}/>
               </Routes>
               <Routes>
-                <Route path="/carrito" element={<>/* el carrito */</>}/>
+                <Route path="/carrito" element={<Carrito/>}/>
               </Routes>
           </BrowserRouter> 
   </div>
