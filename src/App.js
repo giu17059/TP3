@@ -7,7 +7,6 @@ import { MostrarProducto } from './components/producto';
 import { Home } from './components/home';
 
 
-
 function App() {
   const [listaComprados, setListaComprados] = useState([]);
   const [prodSeleccionado, setProdSeleccionado] = useState();

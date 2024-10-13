@@ -13,7 +13,9 @@ export function MostrarProducto ({producto}){
 
 
     return(
-        <h1>hola</h1>
+        <div>
+            <h1>{producto.title}</h1>
+        </div>
 
 
 
