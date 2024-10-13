@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import './../App.css';
 
 
-export function Listado ({lista_Resultados}){
+export function Listado ({lista_Resultados, setProdSeleccionado}){
     const navigate = useNavigate();
 
-
+    console.log('set producto seleccionado en listado', setProdSeleccionado);
 
     return(
         <div className='container mt-2'>
@@ -28,7 +28,10 @@ export function Listado ({lista_Resultados}){
                             </div>
                         </div>
                         <div className='col-2 mt-4'>
-                            <Button variant='success' onClick={()=>{navigate('/producto')}}>comprar</Button>
+                            <Button variant='success' onClick={()=>{
+                                setProdSeleccionado(item);
+                                navigate('/producto');
+                            }}>comprar</Button>
                         </div>
                     </div>)}
             </div>

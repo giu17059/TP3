@@ -7,14 +7,13 @@ import './../App.css';
 
 
 
-export function MostrarProducto ({producto}){
+export function MostrarProducto ({prodSeleccionado}){
 
-
-
-
+    console.log('prod seleccionado en app.js:', prodSeleccionado);
+    
     return(
         <div>
-            <h1>{producto.title}</h1>
+            <h1>{prodSeleccionado.title}</h1>
         </div>
 
 
