@@ -15,7 +15,7 @@ export function Buscador ( {}){
     fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${buscador}`)
       .then((response) => response.json()) 
       .then((data) => {
-        console.log(data.results); 
+        console.log(data.results);
         setListaResultados(data.results);
       })
       .catch((error) => {
@@ -40,7 +40,11 @@ export function Buscador ( {}){
               </div>
             </div>
         </div>
-        <div className="row text-start mt-2"><Categoria/></div>
+        <div className="row mt-2">
+          <div className="d-flex justify-content-space">
+            <Categoria setResultados={setListaResultados} setCarga={setCargando}/>
+          </div>
+        </div>
         {cargando ? (
                 <div>
                     <p>Buscando...</p>
