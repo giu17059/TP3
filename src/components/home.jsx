@@ -5,26 +5,20 @@ import { Categoria } from "./categoria";
 import { useNavigate } from "react-router-dom";
 
 
-<<<<<<< HEAD
-export function Home (){
+    
 
-    const navigate = useNavigate();
-
-=======
 export function Home ({setProdSeleccionado}){
->>>>>>> d118158da46dbbcb0fe2370560314c08af413468
-
+    const navigate = useNavigate();
     console.log("setProdSeleccionado en home.js", setProdSeleccionado);
     
     return(
         <div>
             <h1>App Mercado Libre</h1>
-<<<<<<< HEAD
 
             <nav className="nav-fluid">
                 <div className="row">
                     <div className="col">
-                        <Buscador/>
+                        <Buscador setProdSeleccionado={setProdSeleccionado}/>
                     </div>
                     <div className="col">
                         <div className="d-flex align-items-bottom">
@@ -42,10 +36,8 @@ export function Home ({setProdSeleccionado}){
 
 
 
-=======
                 
-            <Buscador setProdSeleccionado={setProdSeleccionado}/>
->>>>>>> d118158da46dbbcb0fe2370560314c08af413468
+            
 
         </div>
     );

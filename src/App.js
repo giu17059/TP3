@@ -5,11 +5,8 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MostrarProducto } from './components/producto';
 import { Home } from './components/home';
-<<<<<<< HEAD
 import { Carrito } from './components/carrito';
-=======
 import { Listado } from './components/listado';
->>>>>>> d118158da46dbbcb0fe2370560314c08af413468
 
 
 function App() {
