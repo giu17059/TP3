@@ -2,14 +2,16 @@ import "./../App.css"
 import { useState } from "react"
 import Button  from "react-bootstrap/Button";
 import { Listado } from "./listado";
+import { Categoria } from "./categoria";
 
 
 export function Buscador ( {}){
   const [buscador, setBuscador] = useState ("");
-  
+  const [cargando, setCargando] = useState (false);
   const [listaResultados, setListaResultados] = useState ([]);
 
    function buscar_api (){
+    setCargando(true);
     fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${buscador}`)
       .then((response) => response.json()) 
       .then((data) => {
@@ -18,8 +20,8 @@ export function Buscador ( {}){
       })
       .catch((error) => {
         console.error("Error al buscar en la API de Mercado Libre:", error);
-      });
-
+      })
+      .finally(()=>{setCargando(false)});
    }
 
     return(
@@ -37,8 +39,16 @@ export function Buscador ( {}){
                 <Button onClick={buscar_api} variant="primary">🔍</Button>
               </div>
             </div>
-        </div> 
-          <Listado lista_Resultados={listaResultados}/>
+        </div>
+        <div className="row text-start mt-2"><Categoria/></div>
+        {cargando ? (
+                <div>
+                    <p>Buscando...</p>
+                    <div className='spinner-border' role='status'></div>
+                </div>
+            ) : (
+                <Listado lista_Resultados={listaResultados}></Listado>
+            )}
       </div>
     )
 }

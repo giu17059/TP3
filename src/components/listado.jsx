@@ -11,7 +11,7 @@ export function Listado ({lista_Resultados}){
 
 
     return(
-        <div className='container mt-3'>
+        <div className='container mt-2'>
             <div className='col text-center'>
                 {lista_Resultados.map((item)=> 
                     <div className='row text-center p-4 border'>

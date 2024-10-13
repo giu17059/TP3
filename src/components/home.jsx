@@ -13,7 +13,7 @@ export function Home (){
             <h1>App Mercado Libre</h1>
                 
             <Buscador/>
-            <Categoria/>
+            
 
 
 
