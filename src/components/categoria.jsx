@@ -31,6 +31,7 @@ export function Categoria ({setResultados, setCarga}) {
         <div>
             <div>
                 <select
+                    className='btn btn-dark'
                     onChange={(e) => setCatSeleccionada(e.target.value)}>
                         <option  value="" >Seleccione una categoria</option>
                         {categorias.map((categoria) => (

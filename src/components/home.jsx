@@ -12,21 +12,9 @@ export function Home ({setProdSeleccionado}){
     
     return(
         <div>
-            <h1>App Mercado Libre</h1>
-
-            <nav className="nav-fluid">
-                <div className="row">
-                    <div className="col">
-                        <Buscador setProdSeleccionado={setProdSeleccionado}/>
-                    </div>
-                    <div className="col">
-                        <div className="d-flex align-items-bottom">
-                            <button onClick={()=> navigate ('/carrito')}>carrito 🛒</button>
-                        </div>
-                    </div>
-                </div>
-               
-            </nav>  
+            <h1 className="titulo">App Mercado Libre</h1>
+                <Buscador setProdSeleccionado={setProdSeleccionado}/>
+                     
             
             
 

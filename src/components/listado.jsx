@@ -24,7 +24,7 @@ export function Listado ({lista_Resultados, setProdSeleccionado}){
                     </div>
                 ) : (
                     lista_Resultados.map((item) => (
-                        <div className='row text-center p-4 border' key={item.id}> {/* Asegúrate de tener una clave única */}
+                        <div className='row text-center p-4 border' key={item.id}> 
                             <div className='col-1'></div>
                             <div className='col'>
                                 <img src={item.thumbnail} alt="imagen del producto" className='imagen_personalizada' />

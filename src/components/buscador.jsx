@@ -32,18 +32,23 @@ export function Buscador ({setProdSeleccionado}){
               <div className="d-flex justify-content-center">
                 <input 
                     type="text" 
-                    className="p-1"
+                    className="p-1 buscador"
                     placeholder="Buscador" 
                     value={buscador}
                     onChange={(e)=> setBuscador(e.target.value)} 
                     onKeyDown={(e)=> e.key === 'Enter'? buscar_api():{}}/>
-                <Button onClick={buscar_api} variant="primary">🔍</Button>
+                <Button disabled={buscador === "" ? (true):(false)} onClick={buscar_api} variant="primary" className="boton_buscar">🔍</Button>
               </div>
             </div>
         </div>
         <div className="row mt-2">
-          <div className="d-flex justify-content-space">
-            <Categoria setResultados={setListaResultados} setCarga={setCargando}/>
+          <div className="d-flex justify-content-around">
+            <div>
+              <Categoria setResultados={setListaResultados} setCarga={setCargando}/>
+            </div>
+            <div>
+              <button className="btn btn-dark">Carrito 🛒</button>
+            </div>
           </div>
         </div>
         {cargando ? (

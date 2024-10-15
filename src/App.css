@@ -42,3 +42,18 @@
   max-width: 10rem;
   max-height: 10rem;
 }
+
+.boton_buscar:disabled{
+  opacity: 1!important;
+}
+
+
+.buscador{
+  border-radius: 0.5rem;
+  margin-right: 0.1rem;
+  padding: 1rem;
+}
+
+.titulo{
+  font-family: sans-serif;
+}
