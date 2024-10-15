@@ -13,8 +13,6 @@ function App() {
   const [listaComprados, setListaComprados] = useState([]);
   const [prodSeleccionado, setProdSeleccionado] = useState();
 
-  
-
   return(
     <div className='container-fluid '>
           <BrowserRouter>
