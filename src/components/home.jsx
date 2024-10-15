@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 export function Home ({setProdSeleccionado}){
     const navigate = useNavigate();
-    console.log("setProdSeleccionado en home.js", setProdSeleccionado);
     
     return(
         <div>

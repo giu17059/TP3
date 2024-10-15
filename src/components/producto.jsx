@@ -9,11 +9,11 @@ import './../App.css';
 
 export function MostrarProducto ({prodSeleccionado}){
 
-    console.log('prod seleccionado en app.js:', prodSeleccionado);
+    console.log(prodSeleccionado);
     
     return(
         <div>
-            <h1>{prodSeleccionado.title}</h1>
+            {prodSeleccionado.title}
         </div>
 
 

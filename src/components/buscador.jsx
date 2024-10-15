@@ -10,7 +10,6 @@ export function Buscador ({setProdSeleccionado}){
   const [cargando, setCargando] = useState (false);
   const [listaResultados, setListaResultados] = useState ([]);
 
-  console.log ("set prodSeleccionado en buscador", setProdSeleccionado);
 
    function buscar_api (){
     setCargando(true);

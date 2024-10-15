@@ -13,20 +13,16 @@ function App() {
   const [listaComprados, setListaComprados] = useState([]);
   const [prodSeleccionado, setProdSeleccionado] = useState();
 
-  console.log('prod seleccionado en app.js:', prodSeleccionado);
+  
 
   return(
     <div className='container-fluid '>
           <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Home setProdSeleccionado={setProdSeleccionado}/>}/>
-              </Routes>
-              <Routes>
-                <Route path="/producto" element={<MostrarProducto producto={prodSeleccionado}/>}/>
-              </Routes>
-              <Routes>
-                <Route path="/carrito" element={<Carrito/>}/>
-              </Routes>
+            <Routes>
+              <Route path="/" element={<Home setProdSeleccionado={setProdSeleccionado} />} />
+              <Route path="/producto" element={<MostrarProducto prodSeleccionado={prodSeleccionado} />} />
+              <Route path="/carrito" element={<Carrito />} />
+            </Routes>
           </BrowserRouter> 
   </div>
   )
