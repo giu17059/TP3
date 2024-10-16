@@ -1,15 +1,19 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './../App.css';
-import {useEffect, useState} from 'react';
-import {Container, Row, Col, Button} from 'react-bootstrap';
+import {useEffect, useState, useContext} from 'react';
+import {Container, Row, Col, Button } from 'react-bootstrap';
 import { Carrusel } from './carrusel';
+import { ProductContext } from "../App";
 import { useNavigate } from 'react-router-dom';
 
-export function MostrarProducto ({prodSeleccionado}){
+export function MostrarProducto (){
+
+    const { prodSeleccionado } = useContext(ProductContext);
     const [item, setItem] = useState({});
     const [descripcion, setDescripcion] = useState('');
     const navigate = useNavigate ();
+    
 
     useEffect(() => {
         if (prodSeleccionado && prodSeleccionado.id){
@@ -39,9 +43,8 @@ export function MostrarProducto ({prodSeleccionado}){
 
     return(
         <Container>
-            <Row>
-                 
-                <Col md={6} >
+            <Row> 
+                <Col md={6}>
                     {item.pictures && item.pictures.length > 0 ? (
                         <Carrusel images={item.pictures} /> 
                     ): (

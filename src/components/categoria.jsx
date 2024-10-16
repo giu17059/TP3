@@ -1,11 +1,12 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import { Listado } from './listado';
+import { ProductContext } from "../App";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export function Categoria ({setResultados, setCarga}) {
+export function Categoria ({setCarga}) {
     const [categorias, setCategoria] = useState([]);
     const[catSeleccionada, setCatSeleccionada] = useState('');
-
+    const { setListaResultados } = useContext(ProductContext);
     useEffect(() => {
         fetch(`https://api.mercadolibre.com/sites/MLA/categories`)
             .then(response => response.json())
@@ -19,7 +20,7 @@ export function Categoria ({setResultados, setCarga}) {
             fetch(`https://api.mercadolibre.com/sites/MLA/search?category=${catSeleccionada}`)
             .then(response => response.json())
             .then(data => {
-                setResultados(data.results);
+                setListaResultados(data.results);
                 console.log('Productos obtenidos: ', data.results);
             })
             .catch(error => console.error('Error al buscar por esta categoría:', error))
