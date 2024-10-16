@@ -11,13 +11,13 @@ export function Listado (){
     const navigate = useNavigate();
     const { listaResultados } = useContext(ProductContext);
     const { setProdSeleccionado} = useContext(ProductContext);
-
+    console.log(listaResultados);
     function toProducto (item){
 
         setProdSeleccionado(item);
         navigate('/producto');
     }
-    
+
 
     return(
         <div className='container mt-2'>

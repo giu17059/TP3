@@ -16,7 +16,7 @@ export function Categoria ({setCarga}) {
 
     useEffect(() => {
         if (catSeleccionada) {
-            setListaResultados(true);
+            setCarga(true);
             fetch(`https://api.mercadolibre.com/sites/MLA/search?category=${catSeleccionada}`)
             .then(response => response.json())
             .then(data => {

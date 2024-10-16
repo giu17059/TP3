@@ -49,7 +49,7 @@ export function Buscador() {
       <div className="row mt-2">
         <div className="d-flex justify-content-around">
           <div>
-            <Categoria setResultados={setListaResultados} />
+            <Categoria setCarga={setCargando}/>
           </div>
           <div>
             <button className="btn btn-dark">Carrito 🛒</button>
@@ -62,7 +62,7 @@ export function Buscador() {
           <div className='spinner-border' role='status'></div>
         </div>
       ) : (
-        <Listado lista_Resultados={listaResultados} setProdSeleccionado={setProdSeleccionado} />
+        <Listado/>
       )}
     </div>
   );
