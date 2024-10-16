@@ -14,7 +14,6 @@ export function Listado ({lista_Resultados, setProdSeleccionado}){
         navigate('/producto');
     }
 
-
     return(
         <div className='container mt-2'>
             <div className='col text-center'>
@@ -46,4 +45,4 @@ export function Listado ({lista_Resultados, setProdSeleccionado}){
             </div>
         </div>
     )   
-}
+} 
