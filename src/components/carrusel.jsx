@@ -9,9 +9,10 @@ export function Carrusel ({ images = []} ) {
             {images.map((imagen, index) => (
                 <Carousel.Item key={index}>
                     <img
-                        className="d-block w-100"
+                        className="d-block mx-auto "
                         src={imagen.url}
                         alt={`Imagen ${index + 1}`}
+                        
                     />
                 </Carousel.Item>
             ))}

@@ -2,13 +2,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './../App.css';
 import {useEffect, useState, useContext} from 'react';
-import {Container, Row, Col, Button } from 'react-bootstrap';
+import {Container, Row, Col, Button, Table } from 'react-bootstrap';
 import { Carrusel } from './carrusel';
 import { ProductContext } from "../App";
 import { useNavigate } from 'react-router-dom';
 
 export function MostrarProducto (){
-
     const { prodSeleccionado } = useContext(ProductContext);
     const [item, setItem] = useState({});
     const [descripcion, setDescripcion] = useState('');
@@ -29,8 +28,9 @@ export function MostrarProducto (){
         
         }
     }, [prodSeleccionado]); 
+
     function toCarrito (prodSeleccionado){
-        navigate('/carrito', {state: {producto: prodSeleccionado}});
+        navigate('/', {state: {producto: prodSeleccionado}});
     }
 
     console.log('prod seleccionado en producto:', prodSeleccionado);
@@ -41,29 +41,58 @@ export function MostrarProducto (){
         return <p>No tengo ningún producto para mostrar...</p>;
     }
 
+    const mostrarAtributos = (item) => {
+        console.log('mostrar atributos', item.atributes);
+        return item.attributes ? (
+            <div>
+                <p>Caracteristicas principales</p>
+                <Table striped bordered hover>
+                    <tbody>
+                        {item.attributes.map((atributo, index) =>(
+                            <tr key={index}>
+                                <td>{atributo.name}</td>
+                                <td>{atributo.value_name}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </div>
+        )  : null};
+
     return(
-        <Container>
-            <Row> 
-                <Col md={6}>
+        <Container className='contenedor'>
+            <Row className='fila_producto'> 
+                <Col md={6} className='imagenes'>
                     {item.pictures && item.pictures.length > 0 ? (
-                        <Carrusel images={item.pictures} /> 
+                        <Carrusel className='img' images={item.pictures} /> 
                     ): (
                         <img src={prodSeleccionado.thumbnail} alt="imagen del producto" className='imagen_personalizada'/>
                     )}
                 </Col>
                 <Col md={6}>
                     
-                    <h1>{prodSeleccionado.title}</h1>
-                    <h3>Precio: ${prodSeleccionado.price}</h3>
-                    <p>
-                        <strong> Descripción: </strong>
-                        {descripcion}</p>
-                    <p>Atributos </p>
+                    <h1 className='titulo'>{prodSeleccionado.title}</h1>
+                    <h3 className='precio '>
+                        Precio: ${prodSeleccionado.price.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </h3>
+                    {descripcion && (
+                        <p className='descripcion'>
+                            <strong> 
+                                Descripción: 
+                            </strong>
+                            {descripcion}
+                        </p>
+                        )}
+                   
+                    
                 </Col>
             </Row>
-            <Row>
+            <Row className='mt-4'>
+                <Col md={8}>
+                    {mostrarAtributos(item)}
+                </Col>
                 <Col className="text-end">
-                    <Button variant='success' onClick={() => { toCarrito(prodSeleccionado) }}>
+                    <Button className='btn_addCarrito' variant='success' onClick={() => { toCarrito(prodSeleccionado) }}>
                         Agregar al carrito
                     </Button>
                 </Col>

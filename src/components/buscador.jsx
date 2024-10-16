@@ -4,11 +4,13 @@ import Button from "react-bootstrap/Button";
 import { Listado } from "./listado";
 import { Categoria } from "./categoria";
 import { ProductContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 export function Buscador() {
   const [buscador, setBuscador] = useState("");
   const [cargando, setCargando] = useState(false);
   const { listaResultados, setListaResultados, setProdSeleccionado } = useContext(ProductContext);
+  const navigate = useNavigate();
 
   function buscar_api() {
     setCargando(true);
@@ -52,7 +54,7 @@ export function Buscador() {
             <Categoria setCarga={setCargando}/>
           </div>
           <div>
-            <button className="btn btn-dark">Carrito 🛒</button>
+            <button className="btn btn-dark" onClick={()=> navigate ('/carrito')}>Carrito 🛒</button>
           </div>
         </div>
       </div>
