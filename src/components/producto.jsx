@@ -1,13 +1,16 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './../App.css';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import { Carrusel } from './carrusel';
+import { ProductContext } from "../App";
 
-export function MostrarProducto ({prodSeleccionado}){
+export function MostrarProducto (){
 
+    const { prodSeleccionado } = useContext(ProductContext);
     const [item, setItem] = useState({});
+    
 
     useEffect(() => {
         if (prodSeleccionado && prodSeleccionado.id){
@@ -17,10 +20,6 @@ export function MostrarProducto ({prodSeleccionado}){
             .catch(error => console.error('Error al obtener los datos:', error));
         }
     }, [prodSeleccionado]); 
-
-    console.log('prod seleccionado en producto:', prodSeleccionado);
-    console.log('item en componente producto', item);
-    console.log('pictures item en componente producto', item.pictures);
     
     if (!prodSeleccionado || !prodSeleccionado.thumbnail) {
         return <p>Cargando...</p>;
@@ -28,8 +27,7 @@ export function MostrarProducto ({prodSeleccionado}){
 
     return(
         <Container>
-            <Row>
-                 
+            <Row> 
                 <Col md={6}>
                     {item.pictures && item.pictures.length > 0 ? (
                         <Carrusel images={item.pictures} /> 
