@@ -8,10 +8,11 @@ import { ProductContext } from "../App";
 import { useNavigate } from 'react-router-dom';
 
 export function MostrarProducto (){
-    const { prodSeleccionado } = useContext(ProductContext);
+    const { prodSeleccionado, setListaComprados} = useContext(ProductContext);
     const [item, setItem] = useState({});
     const [descripcion, setDescripcion] = useState('');
     const navigate = useNavigate ();
+    const [cantidad, setCantidad] = useState(0);
     
 
     useEffect(() => {
@@ -29,7 +30,9 @@ export function MostrarProducto (){
         }
     }, [prodSeleccionado]); 
 
-    function toCarrito (prodSeleccionado){
+    function toCarrito (prodSeleccionado, cant){
+        const nuevoProducto = {...prodSeleccionado , cantidad: cant};
+        setListaComprados (prevLista => [...prevLista, nuevoProducto])
         navigate('/', {state: {producto: prodSeleccionado}});
     }
 
@@ -59,7 +62,14 @@ export function MostrarProducto (){
             </div>
         )  : null};
 
-    return(
+return(
+    <div>
+        <button onClick={()=> navigate('/')} className='btn'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="60" height="60" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M9 14l-4 -4l4 -4" />
+                                            <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
+                                            </svg>
+        </button>
         <Container className='contenedor'>
             <Row className='fila_producto'> 
                 <Col md={6} className='imagenes'>
@@ -92,13 +102,20 @@ export function MostrarProducto (){
                     {mostrarAtributos(item)}
                 </Col>
                 <Col className="text-end">
-                    <Button className='btn_addCarrito' variant='success' onClick={() => { toCarrito(prodSeleccionado) }}>
-                        Agregar al carrito
-                    </Button>
+                    <Row>
+                        <Col>
+                            <input type="number" min={1} value={cantidad} onChange={(e)=> setCantidad(e.target.value)}/>
+                        </Col>
+                        <Col>
+                            <Button className='btn_addCarrito' variant='success' onClick={() => { toCarrito(prodSeleccionado, cantidad) }}>
+                                Agregar al carrito
+                            </Button>
+                        </Col>
+                    </Row>
                 </Col>
                 
             </Row>
         </Container>
-        
-    );
+    </div>
+);
 }
