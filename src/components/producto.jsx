@@ -71,6 +71,7 @@ return(
                                             </svg>
         </button>
         <Container className='contenedor'>
+            
             <Row className='fila_producto'> 
                 <Col md={6} className='imagenes'>
                     {item.pictures && item.pictures.length > 0 ? (
