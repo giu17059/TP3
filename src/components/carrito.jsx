@@ -11,7 +11,7 @@ export function Carrito (){
     const location = useLocation();
     const nuevoProducto = location.state?.producto;
     const [productosCarrito, setProductosCarrito] = useState([]);
-    const { listaComprados } = useContext(ProductContext);
+    const { listaComprados, setListaComprados} = useContext(ProductContext);
     const navigate = useNavigate()
 
     useEffect (()=> {
@@ -19,8 +19,35 @@ export function Carrito (){
             setProductosCarrito((prevProductos) => [...prevProductos, nuevoProducto]);        
         }
     },[nuevoProducto]);
-    console.log('productos del carrito:',productosCarrito)
 
+
+    function restar(producto) {
+        
+        const listanueva = listaComprados.map((item) => {
+            if (item.id === producto.id) { 
+                return { ...item, cantidad: Number(item.cantidad)-1 }; 
+            }
+            return item; 
+        }).filter(item => item.cantidad > 0); 
+        
+        setListaComprados(listanueva);
+    }
+
+    function agregar (producto){
+        const listanueva = listaComprados.map((item) => {
+            if (item.id === producto.id) { 
+                return { ...item, cantidad: Number(item.cantidad)+1 }; 
+            }
+            return item; 
+        })
+        
+        setListaComprados(listanueva);
+    }
+
+    function quitar (producto){
+        const nuevaLista = listaComprados.filter((item) => item.id !== producto.id)
+        setListaComprados(nuevaLista)
+    }
 
 
 return(
@@ -51,12 +78,26 @@ return(
                                 <div className='row'>
                                     ${item.price}
                                 </div>
-                                <div>
-                                    {item.cantidad}
+                                <div className='row'>
+                                    <div className='col'>
+                                        <button className='btn btn-danger' onClick={()=>restar(item)}>-</button>
+                                    </div>
+                                    <div className='col'>
+                                        {item.cantidad}
+                                    </div>
+                                    <div className='col'>
+                                        <button className='btn btn-success' onClick={()=>agregar(item)}>+</button>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div className='col-2 mt-4'>
-                                Sub total: {item.price * item.cantidad}
+                                <div className='row'>
+                                    <button className='btn btn-danger' onClick={()=>quitar(item)}>X</button>
+                                </div>
+                                <div className='row'>
+                                    Subtotal: {item.price * item.cantidad}
+                                </div>
                             </div>
                         </div>
                     )))}

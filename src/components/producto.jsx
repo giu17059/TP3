@@ -31,7 +31,7 @@ export function MostrarProducto (){
     }, [prodSeleccionado]); 
 
     function toCarrito (prodSeleccionado, cant){
-        const nuevoProducto = {...prodSeleccionado , cantidad: cant};
+        const nuevoProducto = {...prodSeleccionado , cantidad: cant, idcarrito: 1};
         setListaComprados (prevLista => [...prevLista, nuevoProducto])
         navigate('/', {state: {producto: prodSeleccionado}});
     }
