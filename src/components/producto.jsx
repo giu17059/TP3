@@ -70,55 +70,67 @@ export function MostrarProducto (){
 
 return(
     <div>
-        <button onClick={()=> navigate('/')} className='btn'><svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-back-up" width="60" height="60" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                            <path d="M9 14l-4 -4l4 -4" />
-                                            <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
-                                            </svg>
-        </button>
+        <Row>
+            <Col >
+                <button onClick={()=> navigate('/')} className='btn'>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M9 14l-4 -4l4 -4" />
+                        <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
+                    </svg>
+                </button>
+            </Col>
+            <Col className=' col-2 mt-4 d-flex justify-content-center'>
+                    <button className="btn btn-dark" onClick={()=> navigate ('/carrito')}>Carrito 🛒</button>
+            </Col>
+        </Row>
         <Container className='contenedor'>
-            
-            <Row className='fila_producto'> 
-                <Col md={6} className='imagenes'>
-                    {item.pictures && item.pictures.length > 0 ? (
-                        <Carrusel className='img' images={item.pictures} /> 
-                    ): (
-                        <img src={prodSeleccionado.thumbnail} alt="imagen del producto" className='imagen_personalizada'/>
-                    )}
-                </Col>
-                <Col md={6}>
+            <div style={{maxHeight: '1000px'}}>
+                <Row className='fila_producto'> 
+                    <Col md={6} className='imagenes'>
+                    <div >
+                        {item.pictures && item.pictures.length > 0 ? (
+                            <Carrusel className='img carrusel' images={item.pictures} /> 
+                        ): (
+                            <img src={prodSeleccionado.thumbnail} alt="imagen del producto" className='imagen_personalizada'/>
+                        )}
+                    </div>
                     
-                    <h1 className='titulo'>{prodSeleccionado.title}</h1>
-                    <h3 className='precio '>
-                        Precio: ${prodSeleccionado.price.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                    </h3>
+                    </Col>
+                    <Col md={6}>
+                        
+                        <h1 className='titulo'>{prodSeleccionado.title}</h1>
+                        <h3 className='precio '>
+                            Precio: ${prodSeleccionado.price.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </h3>
+
+                        <Row>
+                            <Col className='md-3'>
+                                <input type="number" min={1} value={cantidad} onChange={(e)=> setCantidad(Number(e.target.value))}/>
+                            </Col>
+                            <Col>
+                                <Button className='btn_addCarrito' variant='success' onClick={() => { toCarrito(prodSeleccionado, cantidad) }}>
+                                    Agregar al carrito
+                                </Button>
+                            </Col>
+                        </Row>                 
+                        
+                    </Col>
+                </Row> 
+            </div>          
+            <Row className='mt-4'>
+                <Col className='md-6'>
+                    {mostrarAtributos(item)}
+                </Col>
+                <Col className="md-6">
                     {descripcion && (
                         <p className='descripcion'>
-                            <strong> 
+                            <strong > 
                                 Descripción: 
                             </strong>
                             {descripcion}
                         </p>
                         )}
-                   
-                    
-                </Col>
-            </Row>
-            <Row className='mt-4'>
-                <Col md={8}>
-                    {mostrarAtributos(item)}
-                </Col>
-                <Col className="text-end">
-                    <Row>
-                        <Col>
-                            <input type="number" min={1} value={cantidad} onChange={(e)=> setCantidad(Number(e.target.value))}/>
-                        </Col>
-                        <Col>
-                            <Button className='btn_addCarrito' variant='success' onClick={() => { toCarrito(prodSeleccionado, cantidad) }}>
-                                Agregar al carrito
-                            </Button>
-                        </Col>
-                    </Row>
                 </Col>
                 
             </Row>

@@ -15,18 +15,6 @@ export function Home ({setProdSeleccionado}){
         <div>
             <h1 className="titulo">App Mercado Libre</h1>
                 <Buscador/>
-                     
-            
-            
-
-
-
-
-
-
-                
-            
-
         </div>
     );
 }
