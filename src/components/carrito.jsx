@@ -13,12 +13,23 @@ export function Carrito (){
     const [productosCarrito, setProductosCarrito] = useState([]);
     const { listaComprados, setListaComprados} = useContext(ProductContext);
     const navigate = useNavigate()
+    const [total, setTotal]=useState()
 
     useEffect (()=> {
         if(nuevoProducto){
             setProductosCarrito((prevProductos) => [...prevProductos, nuevoProducto]);        
         }
     },[nuevoProducto]);
+
+
+    
+    useEffect(() => {
+        const nuevoTotal = listaComprados.reduce((acc, item) => {
+            return acc + item.price * item.cantidad; 
+        }, 0);
+        setTotal(nuevoTotal);
+    }, [listaComprados]); 
+
 
 
     function restar(producto) {
@@ -101,6 +112,9 @@ return(
                             </div>
                         </div>
                     )))}
+            </div>
+            <div className=''>
+                <h2>TOTAL: {total}</h2>
             </div>
         </div>
     </div>

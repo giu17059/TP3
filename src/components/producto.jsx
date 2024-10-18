@@ -12,7 +12,7 @@ export function MostrarProducto (){
     const [item, setItem] = useState({});
     const [descripcion, setDescripcion] = useState('');
     const navigate = useNavigate ();
-    const [cantidad, setCantidad] = useState(0);
+    const [cantidad, setCantidad] = useState(1);
     
 
     useEffect(() => {
