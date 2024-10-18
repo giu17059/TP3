@@ -8,7 +8,7 @@ import { ProductContext } from "../App";
 import { useNavigate } from 'react-router-dom';
 
 export function MostrarProducto (){
-    const { prodSeleccionado, setListaComprados} = useContext(ProductContext);
+    const { prodSeleccionado, setListaComprados, listaComprados} = useContext(ProductContext);
     const [item, setItem] = useState({});
     const [descripcion, setDescripcion] = useState('');
     const navigate = useNavigate ();
@@ -31,21 +31,27 @@ export function MostrarProducto (){
     }, [prodSeleccionado]); 
 
     function toCarrito (prodSeleccionado, cant){
-        const nuevoProducto = {...prodSeleccionado , cantidad: cant, idcarrito: 1};
-        setListaComprados (prevLista => [...prevLista, nuevoProducto])
-        navigate('/', {state: {producto: prodSeleccionado}});
+        if(cant>0){
+            const existe = listaComprados.find(
+                (producto) => producto.id === prodSeleccionado.id
+            )
+            if (existe){
+                alert('Ese producto ya existe en el carrito')
+            }else{
+                /* const nuevoProducto = {...prodSeleccionado , cantidad: cant, idcarrito: 1};*/
+                const nuevoProducto = {...prodSeleccionado , cantidad: cant};
+                setListaComprados (prevLista => [...prevLista, nuevoProducto]);
+                navigate('/', {state: {producto: prodSeleccionado}});
+            }
+        } else {
+            alert('La cantidad del producto debe ser mayor a 0.')
+        }
     }
-
-    console.log('prod seleccionado en producto:', prodSeleccionado);
-    console.log('item en componente producto', item);
-    console.log('pictures item en componente producto', item.pictures);
-    
     if (!prodSeleccionado || !prodSeleccionado.thumbnail) {
         return <p>No tengo ningún producto para mostrar...</p>;
     }
 
     const mostrarAtributos = (item) => {
-        console.log('mostrar atributos', item.atributes);
         return item.attributes ? (
             <div>
                 <p>Caracteristicas principales</p>
@@ -64,7 +70,7 @@ export function MostrarProducto (){
 
 return(
     <div>
-        <button onClick={()=> navigate('/')} className='btn'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="60" height="60" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <button onClick={()=> navigate('/')} className='btn'><svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-back-up" width="60" height="60" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                             <path d="M9 14l-4 -4l4 -4" />
                                             <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
@@ -105,7 +111,7 @@ return(
                 <Col className="text-end">
                     <Row>
                         <Col>
-                            <input type="number" min={1} value={cantidad} onChange={(e)=> setCantidad(e.target.value)}/>
+                            <input type="number" min={1} value={cantidad} onChange={(e)=> setCantidad(Number(e.target.value))}/>
                         </Col>
                         <Col>
                             <Button className='btn_addCarrito' variant='success' onClick={() => { toCarrito(prodSeleccionado, cantidad) }}>

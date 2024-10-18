@@ -15,6 +15,7 @@ function App() {
   const [listaResultados, setListaResultados] = useState ([]);
 
   return(
+
     <ProductContext.Provider value= {{listaResultados, setListaResultados, prodSeleccionado, setProdSeleccionado, listaComprados, setListaComprados}}>
         <div className='container-fluid '>
               <BrowserRouter>

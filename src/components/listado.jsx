@@ -11,6 +11,7 @@ export function Listado (){
     const navigate = useNavigate();
     const { listaResultados } = useContext(ProductContext);
     const { setProdSeleccionado} = useContext(ProductContext);
+    const totalCarrito = 0;
     console.log(listaResultados);
     
     function toProducto (item){
@@ -42,7 +43,7 @@ export function Listado (){
                                 </div>
                             </div>
                             <div className='col-2 mt-4'>
-                                <Button variant='success' onClick={() => { toProducto(item) }}>comprar</Button>
+                                <Button variant='success' onClick={() => { toProducto(item) }}>Ver producto</Button>
                             </div>
                         </div>
                     )))}
