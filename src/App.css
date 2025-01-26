@@ -71,16 +71,18 @@
   padding: 1rem;
 }
 
+.fondo{
+  background-color: yellow;
+}
+
 .titulo{
-    font-size: 2.5rem;
-  color: #00123a;
+  font-size: 2.5rem;
+  color: #041d53;
   text-align: center;
   margin: 20px 0;
   letter-spacing: 1px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  background:  #04075d;
-  background-clip: text;
-  color: transparent;
+  
   padding: 10px 0;
   border-radius: 5px;
   transition: transform 0.3s ease;

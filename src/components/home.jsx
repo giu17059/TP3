@@ -13,7 +13,7 @@ export function Home ({setProdSeleccionado}){
     
     return(
         <div>
-            <h1 className="titulo">App Mercado Libre</h1>
+            <h1 className="titulo fondo">App Mercado Libre</h1>
                 <Buscador/>
         </div>
     );
